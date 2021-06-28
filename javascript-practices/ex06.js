@@ -1,5 +1,7 @@
 /*
-자바스크립트 객체는 function 타입과 object 타입 2가지 가 있다.
+자바스크립트 객체1 - object 타입
+
+1. 자바스크립트 객체는 function 타입과 object 타입 2가지 가 있다.
 2. 보통 function 타입 객체는 함수라고 부른다.
 3. 따라서! 자바스크립트 객체라 부르는 것은
    object 타입의 객체를 가리킨다. 
@@ -44,3 +46,10 @@ o3 = {
 };
 
 console.log(o3);
+
+
+
+/* XmlHttpRequest 호스트 객체(브라우저)를 사용해서 통신(AJAX)을 한다. */
+var response = '{name: "둘리", age: 10, email: "dooly@gmail.com"}';
+var userVo = eval("(" + response + ")");
+console.log(userVo.name + ":" + userVo.email);
