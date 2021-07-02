@@ -7,18 +7,17 @@
 <script>
 $(function() {
 	setTimeout(function() {
-		$("li:even").css("color", "red");
-		$("li:odd").css("color", "blue");
+		$("li *").css("font-weight", "bold");
 	}, 2000);
 });
 </script>
 </head>
 <body>
-	<h1>선택자 - jQuery filter(even(짝수), odd(홀수))</h1>
+	<h1>선택자 - 전체 선택자</h1>
 	<ul>
-		<li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
-		<li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
-		<li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+		<li><strong> 텍스트 텍스트 텍스트 텍스트 텍스트 </strong></li>
+		<li><em> 텍스트 텍스트 텍스트 텍스트 텍스트 </em></li>
+		<li><span> 텍스트 텍스트 텍스트 텍스트 텍스트 </span></li>
 		<li> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
 	</ul>
 </body>
