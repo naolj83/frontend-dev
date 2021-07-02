@@ -24,4 +24,14 @@ _jQuery.prototype.css = function(name, value) {
 	}
 }
 
+_jQuery.prototype.get = function(index) {
+	return this[index];
+}
+
+_jQuery.prototype.click = function(handler) {
+	for(var i = 0; i < this.length; i++) {
+		this[i].addEventListener("click", handler); 
+	}
+}
+
 var $ = jQuery;
