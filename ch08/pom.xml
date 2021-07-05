@@ -27,6 +27,12 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
+		<!-- Spring Web -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 
 		<!-- jackson -->
 		<dependency>
@@ -44,7 +50,6 @@
 		</dependency>
 
 	</dependencies>
- 
  
  	<build>
 		<finalName>ch08</finalName>
