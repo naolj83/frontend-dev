@@ -40,8 +40,10 @@
 		// delegation(위임) - document
 		$(document).on("click", "#list-guestbook li a", function(event) {
 			event.preventDefault();
+			
 			let no = $(this).data("no");
-			console.log(no);
+			$("#hidden-no").val(no);
+			
 			deleteDialog.dialog("open");
 		});
 
@@ -50,7 +52,39 @@
 			autoOpen: false,
 			width: 300,
 			height: 220,
-			modal: true
+			modal: true,
+			buttons: {
+				"삭제": function(){
+					const no = $("#hidden-no").val();
+					const password = $("#password-delete").val();
+					$.ajax({
+						url: "${pageContext.request.contextPath }/guestbook/api/delete/" + no,
+						dataType: "json",	
+						type: "post",
+						data: "password=" + password,
+						success: function(response){
+							if(response.data == -1){
+								// 비밀번호가 틀린 경우
+								$(".validateTips.error").show();
+								return;
+							}
+							
+							$("#list-guestbook li[data-no=" + response.data + "]").remove();
+							deleteDialog.dialog("close");
+						}
+					});
+				},
+				"취소": function(){
+					$(this).dialog("close");
+				}
+			},
+			close: function(){
+				// 1. password 비우기
+				// 2. no 비우기
+				// 3. error message 숨기기
+				console.log("다이얼로그 폼 데이터 정리 작업");
+				
+			}
 			
 		});
 		
