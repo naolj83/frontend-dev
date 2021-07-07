@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -14,6 +15,16 @@ import com.douzone.frontdev.ch08.vo.GuestbookVo;
 @RequestMapping("/guestbook/api")
 public class GuestbookApiController {
 
+	@ResponseBody
+	@RequestMapping("/add")
+	public JsonResult ex2(@RequestBody GuestbookVo vo) {
+		// 등록 작업(GuestbookService)
+		vo.setNo(11L);
+		vo.setPassword("");
+		
+		return JsonResult.success(vo); 
+	}
+	
 	@ResponseBody
 	@RequestMapping("/list")
 	public JsonResult ex1() {

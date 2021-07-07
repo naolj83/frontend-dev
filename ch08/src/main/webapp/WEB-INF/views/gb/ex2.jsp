@@ -43,7 +43,12 @@ $(function(){
 	$("#add-form").submit(function(event){
 		event.preventDefault();
 		
-		if($("#input-name").val() == ""){	// validation
+		vo = {}
+		
+		vo.name = $("#input-name").val();
+		
+		// validation name
+		if(vo.name == ""){
 			//alert("이름이 비어 있습니다.");
 		$("#dialog-message").dialog({
 			modal: true,
@@ -56,7 +61,31 @@ $(function(){
 			return;
 		}
 		
-		console.log("ajax");
+		vo.password = $("#input-password").val();
+		// validation password
+		
+		vo.message = $("#tx-content").val();
+		// validation message
+
+		// 데이터 등록
+		$.ajax({
+			url: "${pageContext.request.contextPath }/guestbook/api/add",
+			dataType: "json",
+			type: "post",	
+			contentType: "application/json",	
+			data: JSON.stringify(vo),			
+			success: function(response){
+				var vo = response.data;
+				html = 
+					"<li data-no='" + vo.no + "'>" + 
+						"<strong>" + vo.name + "</strong>" +
+						"<p>" + vo.message + "</p>" +
+						"<strong></strong>" +
+						"<a href='' data-no='" + vo.no + "'>삭제</a>" + 
+					"</li>";			
+				$("#list-guestbook").prepend(html);		
+			}
+		});
 	})
 });
 </script>

@@ -16,4 +16,9 @@ public class GuestbookTestController {
 	public String ex2() {
 		return "gb/ex2";
 	}
+
+	@RequestMapping("/ex3")
+	public String ex3() {
+		return "gb/ex3";
+	}
 }

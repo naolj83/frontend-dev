@@ -41,9 +41,7 @@ $(function(){
 </script>
 </head>
 <body>
-	<ul id="list-guestbook">
-
-	</ul>
+	<ul id="list-guestbook"></ul>
 	<div style="margin: 20px 0 0 0">
 		<button id="btn-fetch">다음 가져오기</button>
 	</div>
