@@ -18,7 +18,7 @@ public class GuestbookApiController {
 
 	@ResponseBody
 	@RequestMapping("/delete/{no}")
-	public JsonResult ex2(@PathVariable("no") Long no, String password) {
+	public JsonResult ex3(@PathVariable("no") Long no, String password) {
 		// 삭제 작업(GuestbookService)
 		Long data = 0L;
 		
