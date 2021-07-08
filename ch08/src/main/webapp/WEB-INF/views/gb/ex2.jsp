@@ -11,33 +11,23 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="${pageContext.request.contextPath }/jquery/jquery-3.6.0.js" type="text/javascript"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+<script src="${pageContext.request.contextPath }/ejs/ejs.js" type="text/javascript"></script>
 <script>
-/*
-var fetch = function(){
-	$.ajax({
-		url: "${pageContext.request.contextPath }/guestbook/api/list",
-		dataType: "json",	
-		type: "get",		
-		success: function(response){
-			response.data.forEach(function(vo){
-				html = 
-				"<li data-no='" + vo.no + "'>" + 
-					"<strong>" + vo.name + "</strong>" +
-					"<p>" + vo.message + "</p>" +
-					"<strong></strong>" +
-					"<a href='' data-no='" + vo.no + "'>삭제</a>" + 
-				"</li>";
-			$("#list-guestbook").append(html);
-			});
-		}
-	});
+var render = function(vo, mode){
+	html =
+		"<li data-no='" + vo.no + "'>" + 
+			"<strong>" + vo.name + "</strong>" +
+			"<p>" + vo.message + "</p>" +
+			"<strong></strong>" + 
+			"<a href='' data-no='" + vo.no + "'>삭제</a>" + 
+		"</li>";
+	$("#list-guestbook")[mode ? "append" : "prepend"](html);
 }
-*/
 
-var messageBox = function(title, message){
-	
-}
+var listItemEJS = new EJS({
+	url: "${pageContext.request.contextPath }/ejs/listitem-template.ejs"
+});
+
 
 $(function(){
 	$("#add-form").submit(function(event){
@@ -46,46 +36,40 @@ $(function(){
 		vo = {}
 		
 		vo.name = $("#input-name").val();
-		
 		// validation name
-		if(vo.name == ""){
-			//alert("이름이 비어 있습니다.");
-		$("#dialog-message").dialog({
-			modal: true,
-			buttons: {
-				"확인": function(){
-					$(this).dialog("close");
-				}
-			}
-		});
+		if(vo.name == "") {
+			// alert("이름이 비어 있습니다.");
+			$("#dialog-message").dialog({
+				modal: true,
+				buttons: {
+					"확인": function(){
+						$(this).dialog("close");
+					}
+				}				
+			});
 			return;
 		}
-		
+
 		vo.password = $("#input-password").val();
 		// validation password
-		
+
 		vo.message = $("#tx-content").val();
 		// validation message
-
+		
 		// 데이터 등록
 		$.ajax({
 			url: "${pageContext.request.contextPath }/guestbook/api/add",
 			dataType: "json",
-			type: "post",	
-			contentType: "application/json",	
-			data: JSON.stringify(vo),			
+			type: "post",
+			contentType: "application/json",   
+			data: JSON.stringify(vo),
 			success: function(response){
-				var vo = response.data;
-				html = 
-					"<li data-no='" + vo.no + "'>" + 
-						"<strong>" + vo.name + "</strong>" +
-						"<p>" + vo.message + "</p>" +
-						"<strong></strong>" +
-						"<a href='' data-no='" + vo.no + "'>삭제</a>" + 
-					"</li>";			
-				$("#list-guestbook").prepend(html);		
+				//render(response.data, false);
+				var html = listItemEJS.render(response.data);
+				$("#list-guestbook").prepend(html);
 			}
-		});
+		});		
+		
 	})
 });
 </script>
@@ -108,16 +92,14 @@ $(function(){
 				<p>
 					안녕하세요<br> 홈페이지가 개 굿 입니다.
 				</p> <strong></strong> <a href='' data-no=''>삭제</a></li>
-
 			<li data-no=''><strong>주인</strong>
 				<p>
 					아작스 방명록 입니다.<br> 테스트~
 				</p> <strong></strong> <a href='' data-no=''>삭제</a></li>
 		</ul>
-
-			<div id="dialog-message" title="Error" style="display:none">
-  				<p>안뇽</p>
-			</div>						
 	</div>
+	<div id="dialog-message" title="예제" style="display:none">
+  		<p>안녕하세요~</p>
+	</div>	
 </body>
 </html>
