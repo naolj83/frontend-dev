@@ -26,27 +26,23 @@ li.on	{ background-color:#287FC2; color:#fff }
 </style>
 <script type="text/javascript" src="./jquery/jquery-3.6.0.js"></script>
 <script type="text/javascript">
-$(function(){
+$(function() {
 	$("ul li")
 		.mouseover(function(){
-			//$(this).css({
+			// $(this).css({
 			//	backgroundColor: "#287fc2",
 			//	color: "#fff"
-			//});
+			// });
 			$(this).addClass("on");
-			
-			console.log("mouseover(" + this.innerText + ")");
-			console.log("mouseover(" + $(this).text() + ")");	// jQuery객체
 		})
 		.mouseout(function(){
-			//$(this).css({
+			// $(this).css({
 			//	backgroundColor: "#fff",
 			//	color: "#333"
-			//});
+			// });
 			$(this).removeClass("on");
-			
-			console.log("mouseout(" + $(this).text() + ")");	// jQuery객체
-		})
+		});
+
 });  
 </script>
 </head>
@@ -59,6 +55,5 @@ $(function(){
 		<li>아이템4</li>
 		<li>아이템5</li>
 	</ul>
-	
 </body>
 </html>
