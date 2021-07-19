@@ -94,7 +94,7 @@ try{
 }
 ```
 Strict Mode( ===, !===, 객체인 경우 동일성 )로 assertion을 하여야 한다.
-1. equal(deprecteds) -> strictEqual
+1. equal(deprecteds) -> strictEqual   (같은 객체인지 비교)
 2. notEqual(deprecteds) -> strictNotEqual
-3. deepEqual(deprecteds) -> strictDeepEqual  (객체 내용 비교)
+3. deepEqual(deprecteds) -> strictDeepEqual  (다른객체지만 내용 같은지 비교)
 4. notDeepEqual(deprecteds) -> notStrictDeepEqual

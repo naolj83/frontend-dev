@@ -6,5 +6,5 @@ try{
     assert.strictEqual(add(10, 20)/*actual*/, '30'/*expect*/);       // ===
     console.log('ok');
 } catch(err) {
-    console.log('fail', err.message);
+    console.log('fail:', err.message);
 }
